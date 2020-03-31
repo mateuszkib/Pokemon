@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="css/reset.css" />
+        <link rel="stylesheet" href="css/alert.css" />
+        <link rel="stylesheet" href="css/index.css" />
+        <title>Home Page</title>
+    </head>
+    <body>
+        <header>
+            <nav>
+                <ul class="nav">
+                    <li class="nav__item">
+                        <button id="actions">Actions</button>
+                    </li>
+                    <li class="nav__item">
+                        <button id="search">Search Pokemon</button>
+                    </li>
+                    <li class="nav__item">
+                        <button id="logout">Logout</button>
+                    </li>
+                </ul>
+            </nav>
+        </header>
+        <main>
+            <div class="alert alert--action">
+                <span class="alert__span"></span>
+            </div>
+            <div class="container"></div>
+        </main>
+
+        <script src="js/isAuth.js"></script>
+        <script src="js/logout.js"></script>
+        <script src="js/actions.js"></script>
+        <script src="js/search.js"></script>
+    </body>
+</html>

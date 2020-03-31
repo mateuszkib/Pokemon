@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="../css/reset.css" />
+        <link rel="stylesheet" href="../css/alert.css" />
+        <link rel="stylesheet" href="../css/auth.css" />
+        <title>Register Page</title>
+    </head>
+    <body>
+        <div class="container">
+            <div class="wrapper">
+                <div class="wrapper-alert">
+                    <div class="alert">
+                        <span class="alert__span"></span>
+                    </div>
+                </div>
+                <div class="authorization">
+                    <form id="register-form" class="authorization__form">
+                        <h2 class="authorization__title">
+                            Register new Account
+                        </h2>
+                        <div>
+                            <label for="email" class="authorization__label"
+                                >Email address</label
+                            >
+                            <input
+                                type="text"
+                                name="email"
+                                id="email"
+                                placeholder="email@example.org"
+                                class="authorization__input"
+                            />
+                        </div>
+                        <div>
+                            <label for="password" class="authorization__label"
+                                >Password</label
+                            >
+                            <input
+                                type="password"
+                                name="password"
+                                id="password"
+                                placeholder="Password..."
+                                class="authorization__input"
+                            />
+                        </div>
+                        <div>
+                            <label
+                                for="passwordConfirm"
+                                class="authorization__label"
+                                >Password Confirm</label
+                            >
+                            <input
+                                type="password"
+                                name="passwordConfirm"
+                                id="passwordConfirm"
+                                placeholder="Password confirm..."
+                                class="authorization__input"
+                            />
+                        </div>
+                        <div>
+                            <button
+                                type="submit"
+                                name="register"
+                                class="authorization__button"
+                            >
+                                Register
+                            </button>
+                        </div>
+                    </form>
+                    <p class="authorization__paragraph">
+                        Have already an account?
+                        <a href="./login.html">Login here</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <script src="../js/register.js"></script>
+    </body>
+</html>

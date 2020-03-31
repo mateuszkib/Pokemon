@@ -1,0 +1,95 @@
+.container {
+    min-height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: #b3daff;
+    position: relative;
+}
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    margin: 0 auto;
+}
+
+.wrapper-alert {
+    width: 100%;
+}
+
+.authorization {
+    max-width: 400px;
+    background: #f2f2f2;
+    border-radius: 2px;
+    padding: 40px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+.authorization__form {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+.authorization__title {
+    margin-bottom: 2rem;
+}
+
+.authorization__input {
+    width: 100%;
+    margin-bottom: 20px;
+    padding: 8px;
+    border: none;
+    border-radius: 2px;
+}
+
+.authorization__button {
+    width: 100%;
+    background: #4da6ff;
+    padding: 15px;
+    border: none;
+    border-radius: 2px;
+    color: #fff;
+}
+
+.authorization__button:hover {
+    cursor: pointer;
+}
+
+.authorization__label {
+    margin-bottom: 10px;
+    display: block;
+}
+
+.authorization__paragraph {
+    text-align: center;
+    color: #b3b3b3;
+    margin-top: 1rem;
+}
+
+.authorization__paragraph a {
+    color: #4da6ff;
+    text-decoration: none;
+}
+
+.authorization__paragraph a:hover {
+    text-decoration: underline;
+}
+
+@media (max-width: 576px) {
+    .wrapper {
+        padding: 5px;
+    }
+}
+
+@media (max-height: 480px) {
+    .wrapper {
+        padding: 5px;
+    }
+}

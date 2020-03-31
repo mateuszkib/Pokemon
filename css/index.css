@@ -1,0 +1,203 @@
+ul {
+    padding: 0;
+    list-style: none;
+}
+
+nav {
+    background: #d9d9d9;
+}
+
+ul.nav {
+    padding: 15px;
+    height: 100%;
+    font-size: 1.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.nav__item {
+    display: inline-block;
+    margin: 0 15px;
+    height: 35px;
+}
+
+.nav__item button {
+    background: none;
+    border: none;
+    color: #313335;
+    font-size: 0.9em;
+    padding: 4px;
+}
+
+.nav__item button:focus {
+    outline: none;
+}
+
+.nav__item button:hover {
+    cursor: pointer;
+    color: black;
+    border-bottom: black solid 2px;
+}
+
+#table {
+    width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+#table td,
+#table th {
+    padding: 8px;
+}
+
+#table tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+#table tr:hover {
+    background-color: #cccccc;
+}
+
+#table th {
+    padding-top: 1.3rem;
+    padding-bottom: 1.3rem;
+    text-align: left;
+    background-color: #8484e1;
+    color: white;
+}
+
+#table th:first-child {
+    border-top-left-radius: 5px;
+}
+
+#table th:last-child {
+    border-top-right-radius: 5px;
+}
+
+#table td {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+}
+
+#table tr {
+    height: 70px;
+    background: #d9d9d9;
+}
+
+#table td button {
+    border: none;
+    background: #dc3545;
+    padding: 10px 20px 10px 20px;
+    color: #fff;
+}
+
+#table td button:hover {
+    cursor: pointer;
+}
+
+.container {
+    width: 80%;
+    margin: 50px auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+input[name="name"] {
+    width: 100%;
+    padding: 12px 24px;
+
+    background-color: transparent;
+    transition: transform 250ms ease-in-out;
+    font-size: 14px;
+    line-height: 18px;
+
+    color: #575756;
+    background-color: transparent;
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cpath d='M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z'/%3E%3Cpath d='M0 0h24v24H0z' fill='none'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-size: 18px 18px;
+    background-position: 95% center;
+    border-radius: 50px;
+    border: 1px solid #575756;
+    transition: all 250ms ease-in-out;
+    backface-visibility: hidden;
+    transform-style: preserve-3d;
+}
+
+input[name="name"]::placeholder {
+    color: color(#575756 a(0.8));
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+}
+
+input[name="name"]:hover,
+input[name="name"]:focus {
+    padding: 12px 0;
+    outline: 0;
+    border: 1px solid transparent;
+    border-bottom: 1px solid #575756;
+    border-radius: 0;
+    background-position: 100% center;
+}
+
+.container-pokemon {
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.container-pokemon__list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.container-pokemon__title {
+    text-align: center;
+}
+
+.container-pokemon__title:nth-of-type(2) {
+    margin-top: 2rem;
+}
+
+.container-pokemon__list__item {
+    counter-increment: index;
+    padding: 12px 0;
+    display: flex;
+    align-items: center;
+    width: 150px;
+    box-sizing: border-box;
+}
+
+.container-pokemon__list__item::before {
+    content: counters(index, ".", decimal-leading-zero);
+    font-size: 1.5rem;
+    text-align: right;
+    font-weight: bold;
+    min-width: 50px;
+    padding-right: 12px;
+    font-variant-numeric: tabular-nums;
+    align-self: flex-start;
+    background-image: linear-gradient(to bottom, aquamarine, orangered);
+    background-attachment: fixed;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+@media (max-width: 576px) {
+    .container {
+        width: 100%;
+        padding: 5px;
+        overflow-x: auto;
+        display: block;
+    }
+
+    ul.nav {
+        flex-direction: column;
+        font-size: 1.2rem;
+    }
+}
