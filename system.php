@@ -16,7 +16,7 @@ if (!$db) {
 
 class Response
 {
-    public static function getResponse($type, $msg, $data = array())
+    public static function jsonData($type, $msg, $data = array())
     {
         $response = ['success' => $type, 'message' => $msg, 'data' => $data];
         echo json_encode($response);
@@ -42,16 +42,16 @@ class Auth
 
         if (empty($email) || empty($password) || empty($passwordConfirm)) {
             header('HTTP/1.1 400 Bad Request');
-            Response::getResponse(false, 'Please fill all fields!');
+            Response::jsonData(false, 'Please fill all fields!');
         } else if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
             header('HTTP/1.1 400 Bad Request');
-            Response::getResponse(false, 'Invalid email format!');
+            Response::jsonData(false, 'Invalid email format!');
         } else if (strlen($password) < 6) {
             header('HTTP/1.1 400 Bad Request');
-            Response::getResponse(false, 'Password minimum legnth is 6');
+            Response::jsonData(false, 'Password minimum legnth is 6');
         } else if ($password !== $passwordConfirm) {
             header('HTTP/1.1 400 Bad Request');
-            Response::getResponse(false, 'Password are not the same!');
+            Response::jsonData(false, 'Password are not the same!');
         } else {
             $stmt = $this->db->prepare('SELECT email FROM users WHERE email=:email');
             if (!$stmt) {
@@ -63,7 +63,7 @@ class Auth
 
             if ($result->fetchArray()) {
                 header('HTTP/1.1 400 Bad Request');
-                Response::getResponse(false, 'User with this email exist!');
+                Response::jsonData(false, 'User with this email exist!');
             } else {
                 $hashPassword = password_hash($password, PASSWORD_BCRYPT);
 
@@ -79,7 +79,7 @@ class Auth
                 $insert->execute();
 
                 header('HTTP/1.1 201 Created');
-                Response::getResponse(true, 'You are register! You can login now.');
+                Response::jsonData(true, 'You are register! You can login now.');
             }
         }
     }
@@ -91,7 +91,7 @@ class Auth
 
         if (empty($email) || empty($password)) {
             header('HTTP/1.1 400 Bad Request');
-            Response::getResponse(false, 'Please fill all fields');
+            Response::jsonData(false, 'Please fill all fields');
         } else {
             $select = $this->db->prepare('SELECT * FROM users WHERE email=:email');
             if (!$select) {
@@ -104,17 +104,17 @@ class Auth
 
             if (!$row) {
                 header('HTTP/1.1 400 Bad Request');
-                Response::getResponse(false, 'User with this Email doesn\'t exist');
+                Response::jsonData(false, 'User with this Email doesn\'t exist');
             } else {
                 if (!password_verify($password, $row['password'])) {
                     header('HTTP/1.1 400 Bad Request');
-                    Response::getResponse(false, 'Password incorrect!');
+                    Response::jsonData(false, 'Password incorrect!');
                 } else {
                     $user = ['id' => $row['id'], 'email' => $row['email']];
                     $_SESSION['id'] = $row['id'];
                     $_SESSION['email'] = $row['email'];
                     header('HTTP/1.1 200 OK');
-                    Response::getResponse(true, 'You are logged in', $user);
+                    Response::jsonData(true, 'You are logged in', $user);
                 }
             }
         }
@@ -125,10 +125,10 @@ class Auth
         $user = json_decode($_POST['user']);
         if (isset($_SESSION['id']) && $_SESSION['id'] === $user->id) {
             header('HTTP/1.1 200 OK');
-            Response::getResponse(true, 'Authenticated');
+            Response::jsonData(true, 'Authenticated');
         } else {
             header('HTTP/1.1 401 Unauthorized');
-            Response::getResponse(false, 'Not Authenticated');
+            Response::jsonData(false, 'Not Authenticated');
         }
     }
 
@@ -137,7 +137,7 @@ class Auth
         session_unset();
         session_destroy();
         header('HTTP/1.1 200 OK');
-        Response::getResponse(true, 'You are logout');
+        Response::jsonData(true, 'You are logout');
     }
 }
 
@@ -156,7 +156,7 @@ class Pokemon
     {
         if (empty($_GET['name'])) {
             header('HTTP/1.1 400 Bad Request');
-            Response::getResponse(false, 'Please write name Pokemon');
+            Response::jsonData(false, 'Please write name Pokemon');
         }
         if (isset($_SESSION['id'])) {
             $curl = curl_init();
@@ -177,7 +177,7 @@ class Pokemon
 
             if ($err) {
                 header('HTTP/1.1 500 Internal Server Error');
-                Response::getResponse(false, 'We have a problem with your request!', $err);
+                Response::jsonData(false, 'We have a problem with your request!', $err);
             }
 
             curl_close($curl);
@@ -203,14 +203,14 @@ class Pokemon
                 $stmt->execute();
 
                 header('HTTP/1.1 200 OK');
-                Response::getResponse(true, 'Successfully get data', $pokemon);
+                Response::jsonData(true, 'Successfully get data', $pokemon);
             } else {
                 header('HTTP/1.1 400 Bad Request');
-                Response::getResponse(false, 'Pokemon doesn\'t exist');
+                Response::jsonData(false, 'Pokemon doesn\'t exist');
             }
         } else {
             header('HTTP/1.1 401 Unauthorized');
-            Response::getResponse(false, 'You don\'t have access to this action!');
+            Response::jsonData(false, 'You don\'t have access to this action!');
         }
     }
 }
@@ -241,10 +241,10 @@ class Actions
             }
 
             header('HTTP/1.1 200 OK');
-            Response::getResponse(true, 'Successfully get data', $actions);
+            Response::jsonData(true, 'Successfully get data', $actions);
         } else {
             header('HTTP/1.1 401 Unauthorized');
-            Response::getResponse(false, 'You don\'t have access to this action!');
+            Response::jsonData(false, 'You don\'t have access to this action!');
         }
     }
 
@@ -260,10 +260,10 @@ class Actions
             $stmt->execute();
 
             header('HTTP/1.1 200 OK');
-            Response::getResponse(true, 'Action was successfully deleted!');
+            Response::jsonData(true, 'Action was successfully deleted!');
         } else {
             header('HTTP/1.1 401 Unauthorized');
-            Response::getResponse(false, 'You don\'t have access to this action!');
+            Response::jsonData(false, 'You don\'t have access to this action!');
         }
     }
 }
